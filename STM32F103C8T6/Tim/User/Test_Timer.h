@@ -5,11 +5,15 @@
 #include "Delay.h"
 #include "OLED.h"
 #include "Timer.h"
+#include "PWM.h"
 
 // 测试内部定时器
 extern void testInternalTimer(void);
 
 // 测试外部时钟
 extern void testExternalTimer(void);
+
+// 测试PWM控制LED呼吸灯(渐变)
+extern void testControlLED_PWM(void);
 
 #endif

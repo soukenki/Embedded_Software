@@ -6,7 +6,10 @@ int main(void)
 	// testInternalTimer();
 	
 	// 测试外部时钟
-	testExternalTimer();	
+	// testExternalTimer();	
+	
+	// 测试PWM控制LED呼吸灯(渐变)
+	testControlLED_PWM();
 	
 	
 	return 0;
