@@ -1,8 +1,8 @@
-# 組み込みソフト  :sunny: MCU51/STM32 
+# :sunny:組込み用のチップを紹介：
 
 ## **MCU51**:  
 
-<a href="/STC89C52RC/STC89C52RC.jpg"><img src="/STC89C52RC/STC89C52RC.jpg" width="60%"></img>  
+<a href="/STC89C52RC/STC89C52RC.jpg"><img src="/STC89C52RC/STC89C52RC.jpg" width="20%"></img>  
 
    - [**STC89C52RC**](https://github.com/soukenki/Embedded_Software/tree/main/STC89C52RC)  
 
@@ -18,7 +18,7 @@
 
 ## **STM32**:  
 
-<a href="/STM32F103C8T6/STM32F103C8T6.jpg"><img src="/STM32F103C8T6/STM32F103C8T6.jpg" width="50%"></img>  
+<a href="/STM32F103C8T6/STM32F103C8T6.jpg"><img src="/STM32F103C8T6/STM32F103C8T6.jpg" width="20%"></img>  
   
    - [**STM32F103C8T6**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6)  
 
@@ -34,7 +34,15 @@
 | SPI | 2 | USBデバイス | 1 |
 | I2C | 2 |  |  |
 
+<br>
 
+<a href="/STM32F429IGT6/STM32F429IGT6.jpg"><img src="/STM32F429IGT6/STM32F429IGT6.jpg" width="20%"></img>  
+  
+   - [**STM32F429IGT6**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F429IGT6) 
+
+<a href="/STM32F429IGT6/STM32F429IGT6_data.png"><img src="/STM32F429IGT6/STM32F429IGT6_data.png" width="90%"></img>  
+
+<br>
 <!---
 嵌入式的手册
 --->
