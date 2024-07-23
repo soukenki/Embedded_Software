@@ -31,6 +31,11 @@ STM32組み込みソフトを勉強する時、こっちにメモをしようと
    - [**Tim**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/Tim) 
       - PWMを使用し、LEDを調光する
 		
+## 機能
+   - [**割り込みと回転ボタン**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/RotaryEncoder)  
+   - [**UART**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/UART)  
+   
+   
 <!---
 STM32的手册
 --->
