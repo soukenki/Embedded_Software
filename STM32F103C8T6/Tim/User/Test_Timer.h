@@ -6,6 +6,7 @@
 #include "OLED.h"
 #include "Timer.h"
 #include "PWM.h"
+#include "Servo.h"
 
 // 测试内部定时器
 extern void testInternalTimer(void);
@@ -15,5 +16,8 @@ extern void testExternalTimer(void);
 
 // 测试PWM控制LED呼吸灯(渐变)
 extern void testControlLED_PWM(void);
+
+// 测试PWM控制舵机
+extern void testControlServo_PWM(void);
 
 #endif
