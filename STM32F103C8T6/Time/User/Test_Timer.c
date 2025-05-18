@@ -66,7 +66,6 @@ void testControlLED_PWM(void)
 // 测试PWM控制舵机  
 void testControlServo_PWM()
 {
-	OLED_Init();
 	Servo_Init(); // 舵机PWM初始化
 
 	while (1)
@@ -84,3 +83,92 @@ void testControlServo_PWM()
 	}
 }
 
+// 测试按键控制舵机
+void testControlServo_Key()
+{
+	OLED_Init();
+	Button_Init();
+	Servo_Init(); // 舵机初始化
+	
+	OLED_ShowString(1, 1, "Angle:");
+	
+	uint8_t key_num = 0;
+	float angle = 0.0;
+	
+	while (1)
+	{
+		key_num = Button_GetNum();
+		if (1 == key_num)
+		{
+			angle += 30; // 每次按下按钮增加30度
+			if (angle > 180)
+			{
+				angle = 180;
+			}
+		}
+		else if (2 == key_num)
+		{
+			angle -= 30; // 每次按下按钮减30度
+			if (angle < 0)
+			{
+				angle = 0;
+			}
+		}
+		Servo_SetAngle(angle); // 调整角度
+		OLED_ShowNum(1, 7, angle, 3);
+	}
+}
+
+// 测试PWM控制直流电机
+void testControlDC_Motor_PWM()
+{
+	DC_Motor_Init(); // 初始化直流电机
+	
+	while (1)
+	{
+		DC_Motor_SetSpeed(30); // 最大速度100 , 正负数 控制 正反转
+		Delay_ms(1000);
+		DC_Motor_SetSpeed(60);
+		Delay_ms(1000);
+		DC_Motor_SetSpeed(100);
+		Delay_ms(1000);
+		DC_Motor_SetSpeed(60);
+		Delay_ms(1000);
+	}
+}
+
+// 测试按键控制直流电机
+void testControlDC_Motor_Key()
+{
+	OLED_Init();
+	Button_Init();
+	DC_Motor_Init(); // 舵机初始化
+	
+	OLED_ShowString(1, 1, "Speed:");
+	
+	uint8_t key_num = 0;
+	int8_t speed = 0;
+	
+	while (1)
+	{
+		key_num = Button_GetNum();
+		if (1 == key_num)
+		{
+			speed += 10; // 每次按下按钮增加20速度
+			if (speed > 100)
+			{
+				speed = 100;
+			}
+		}
+		else if (2 == key_num)
+		{
+			speed -= 10;
+			if (speed < -100)
+			{
+				speed = -100;
+			}
+		}
+		DC_Motor_SetSpeed(speed); // 调整速度
+		OLED_ShowSignedNum(1, 7, speed, 3);
+	}
+}

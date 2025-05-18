@@ -28,8 +28,9 @@ STM32組み込みソフトを勉強する時、こっちにメモをしようと
 ## Tim
 <a href="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Tim/ControlLED_PWM.gif"><img alt="GIF" src="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Tim/ControlLED_PWM.gif?raw=true"/>
 
-   - [**Tim**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/Tim) 
+   - [**Time**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/Tim) 
       - PWMを使用し、LEDを調光する
+	  - motorなど制御
 		
 ## 機能
    - [**割り込みと回転ボタン**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/RotaryEncoder)  

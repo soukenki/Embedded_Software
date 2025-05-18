@@ -139,14 +139,67 @@ void PWM_Init_Servo(void)
 	TIM_Cmd(TIM2, ENABLE);
 }
 
-// 设置CCR的值
+// 初始化PWM (直流电机用例，PA2，通道3)
+void PWM_Init_DC_Motor(void)
+{
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);  // 开启TIM2时钟
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); // 开启GPIOA时钟
+	
+	// GPIO PA2
+	GPIO_InitTypeDef GPIO_InitStructure;               // 创建结构体
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;    // 复用推挽模式
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;          // 设置PA2口
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;  // 50MHz
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	
+	
+	// 配置内部时钟
+	TIM_InternalClockConfig(TIM2);
+	
+	// 配置时基单元
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;              // 创建结构体
+	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;     // 给滤波器的频率，用（1/2/4）分频
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up; // 计数器模式（向上/向下/3种中央 计数）
+	// 定时频率 = 72M / (PSC + 1) / (ARR + 1)
+	// 人耳能听到的频率20Hz~20KHz，降噪需要加大PWM频率到2KHz以上
+	TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;                 // ARR自动重装器的值  0~65535
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 36 - 1 ;  			// PSC预分频器的值  0~65535 （调整来增加PWM频率，72为10KHz，36为20KHz）
+	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0; 			// 重复计数器的值（只有高级定时器才有，不用时，设置0）
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
+	
+	TIM_OCInitTypeDef TIM_OCInitStruct;   				// 创建结构体
+	TIM_OCStructInit(&TIM_OCInitStruct);  				// 设置默认初始值
+	
+	TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;      // 输出比较的模式  PWM1模式
+	TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_High;  	// 输出比较的极性  高极性
+	TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;  // 输出使能
+	TIM_OCInitStruct.TIM_Pulse = 0;					// 设置CCR
+	
+	// TIM_OC1Init(TIM2, &TIM_OCInitStruct); // 通道1初始化
+	// TIM_OC2Init(TIM2, &TIM_OCInitStruct); // 通道2初始化
+	TIM_OC3Init(TIM2, &TIM_OCInitStruct); // 通道3初始化
+	// TIM_OC4Init(TIM2, &TIM_OCInitStruct); // 通道4初始化
+	// 同一个定时器打开多个通道时，频率必须一致，占空比由各自的CCR决定（占空比各自设定）
+	// 相位：由于计数器更新，所有PWM同时跳变，相位是同步的。
+
+	// 启动定时器
+	TIM_Cmd(TIM2, ENABLE);
+}
+
+// 设置通道1的CCR值
 void PWM_SetCompare1(uint16_t Compare)
 {
 	TIM_SetCompare1(TIM2, Compare);
 }
 
-// 设置CCR的值
+// 设置通道2的CCR值
 void PWM_SetCompare2(uint16_t Compare)
 {
 	TIM_SetCompare2(TIM2, Compare);
+}
+
+// 设置通道3的CCR值
+void PWM_SetCompare3(uint16_t Compare)
+{
+	TIM_SetCompare3(TIM2, Compare);
 }

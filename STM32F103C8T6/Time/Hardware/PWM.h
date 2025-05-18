@@ -14,10 +14,17 @@ extern void PWM_Init_AFIO(void);
 // 设置PSC+1= 72，ARR+1= 20K 时 ==== CCR设置500就是0.5ms，CCR设置2500就是2.5ms
 extern void PWM_Init_Servo(void);
 
-// 设置CCR的值 （通道1）
+// 初始化PWM (直流电机用例，PA2，通道3)
+extern void PWM_Init_DC_Motor(void);
+
+// 设置通道1的CCR值
 extern void PWM_SetCompare1(uint16_t Compare);
 
-// 设置CCR的值（通道2）
+// 设置通道2的CCR值
 extern void PWM_SetCompare2(uint16_t Compare);
+
+// 设置通道3的CCR值
+extern void PWM_SetCompare3(uint16_t Compare);
+
 
 #endif

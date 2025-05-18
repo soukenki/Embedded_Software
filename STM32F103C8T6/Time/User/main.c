@@ -12,7 +12,16 @@ int main(void)
 	// testControlLED_PWM();
 	
 	// 测试PWM控制舵机
-	testControlServo_PWM();
+	// testControlServo_PWM();
+	
+	// 测试按键控制舵机
+	// testControlServo_Key();
+	
+	// 测试PWM控制直流电机
+	// testControlDC_Motor_PWM();
+	
+	// 测试按键控制直流电机
+	testControlDC_Motor_Key();
 	
 	
 	return 0;
