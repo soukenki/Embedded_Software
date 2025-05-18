@@ -25,10 +25,10 @@ STM32組み込みソフトを勉強する時、こっちにメモをしようと
       - OLEDの使用
       - OLED組み込み設定
 
-## Tim
-<a href="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Tim/ControlLED_PWM.gif"><img alt="GIF" src="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Tim/ControlLED_PWM.gif?raw=true"/>
+## Time
+<a href="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Time/ControlLED_PWM.gif"><img alt="GIF" src="https://github.com/soukenki/Embedded_Software/blob/main/STM32F103C8T6/Time/ControlLED_PWM.gif?raw=true"/>
 
-   - [**Time**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/Tim) 
+   - [**Time**](https://github.com/soukenki/Embedded_Software/tree/main/STM32F103C8T6/Time) 
       - PWMを使用し、LEDを調光する
 	  - motorなど制御
 		
