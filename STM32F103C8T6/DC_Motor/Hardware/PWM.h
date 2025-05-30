@@ -26,5 +26,7 @@ extern void PWM_SetCompare2(uint16_t Compare);
 // 设置通道3的CCR值
 extern void PWM_SetCompare3(uint16_t Compare);
 
+// 修改PSC值
+extern void PWM_SetPrescaler(uint16_t Prescaler);
 
 #endif

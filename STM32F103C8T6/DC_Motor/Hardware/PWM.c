@@ -7,7 +7,6 @@ void PWM_Init(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);  // 开启TIM2时钟
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); // 开启GPIOA时钟
 	
-	// GPIO PA0 LED
 	GPIO_InitTypeDef GPIO_InitStructure;               // 创建结构体
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;    // 复用推挽模式
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;          // 设置PA0口
@@ -56,7 +55,6 @@ void PWM_Init_AFIO(void)
 	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE); 
 	
 	
-	// GPIO PA0 LED
 	GPIO_InitTypeDef GPIO_InitStructure;               // 创建结构体
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;    // 复用推挽模式
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;          // 设置PA0口
@@ -145,12 +143,12 @@ void PWM_Init_DC_Motor(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);  // 开启TIM2时钟
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); // 开启GPIOA时钟
 	
-	// GPIO PA0 LED
+	// GPIO PA2
 	GPIO_InitTypeDef GPIO_InitStructure;               // 创建结构体
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;    // 复用推挽模式
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;          // 设置PA2口
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;  // 50MHz
-	GPIO_Init(GPIOA, &GPIO_InitStructure);             // 用结构体参数初始化GPIO
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	
 	// 配置内部时钟
@@ -186,6 +184,7 @@ void PWM_Init_DC_Motor(void)
 	TIM_Cmd(TIM2, ENABLE);
 }
 
+
 // 设置通道1的CCR值
 void PWM_SetCompare1(uint16_t Compare)
 {
@@ -203,3 +202,12 @@ void PWM_SetCompare3(uint16_t Compare)
 {
 	TIM_SetCompare3(TIM2, Compare);
 }
+
+// 修改PSC值
+void PWM_SetPrescaler(uint16_t Prescaler)
+{
+	// TIM_PSCReloadMode_Update 预分频器在更新事件重装
+	// TIM_PSCReloadMode_Immediate 预分频器立即重装
+	TIM_PrescalerConfig(TIM2, Prescaler, TIM_PSCReloadMode_Immediate);
+}
+

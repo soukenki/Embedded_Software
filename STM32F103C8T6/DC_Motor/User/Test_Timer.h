@@ -10,6 +10,7 @@
 #include "PWM.h"
 #include "Servo.h"
 #include "DC_Motor.h"
+#include "IC.h"
 
 // 测试内部定时器
 extern void testInternalTimer(void);
@@ -31,5 +32,11 @@ extern void testControlDC_Motor_PWM(void);
 
 // 测试按键控制直流电机
 extern void testControlDC_Motor_Key(void);
+
+// 输入捕获测频率
+extern void testPWMFreq(void);
+
+// PWMI输入捕获测频率+占空比
+extern void testPWMIFreqDuty(void);
 
 #endif

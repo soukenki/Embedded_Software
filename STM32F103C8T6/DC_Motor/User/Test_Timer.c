@@ -103,6 +103,14 @@ void testControlServo_Key()
 			angle += 30; // 每次按下按钮增加30度
 			if (angle > 180)
 			{
+				angle = 180;
+			}
+		}
+		else if (2 == key_num)
+		{
+			angle -= 30; // 每次按下按钮减30度
+			if (angle < 0)
+			{
 				angle = 0;
 			}
 		}
@@ -140,33 +148,67 @@ void testControlDC_Motor_Key()
 	
 	uint8_t key_num = 0;
 	int8_t speed = 0;
-	bool direction = true;
 	
 	while (1)
 	{
 		key_num = Button_GetNum();
 		if (1 == key_num)
 		{
-			if (direction)
+			speed += 10; // 每次按下按钮增加20速度
+			if (speed > 100)
 			{
-				speed += 20; // 每次按下按钮增加20速度
-				if (speed > 100)
-				{
-					speed = 0; // 停下
-					direction = false; // 切换方向
-				}
+				speed = 100;
 			}
-			else
+		}
+		else if (2 == key_num)
+		{
+			speed -= 10;
+			if (speed < -100)
 			{
-				speed -= 20;
-				if (speed < -100)
-				{
-					speed = 0;
-					direction = true;
-				}
+				speed = -100;
 			}
 		}
 		DC_Motor_SetSpeed(speed); // 调整速度
 		OLED_ShowSignedNum(1, 7, speed, 3);
 	}
 }
+
+// 输入捕获测频率
+void testPWMFreq(void)
+{
+	OLED_Init();
+	PWM_Init();
+	IC_Init();
+	
+	OLED_ShowString(1, 1, "Freq:00000Hz");
+	
+	PWM_SetPrescaler(720 - 1);  // Freq = 72M / (PSC + 1) / 100  = 1000Hz
+	PWM_SetCompare1(50);		// Duty = CCR / (ARR + 1);    现在(ARR+1)=100,所以占空比为50
+	
+	while (1)
+	{
+		OLED_ShowNum(1, 6, IC_GetFreq(), 5);
+	}
+}
+
+// PWMI输入捕获测频率+占空比
+void testPWMIFreqDuty(void)
+{
+	OLED_Init();
+	PWM_Init();
+	IC_Init_PWMI();
+	
+	OLED_ShowString(1, 1, "Freq:00000Hz");
+	OLED_ShowString(2, 1, "Duty:00%");
+	
+	PWM_SetPrescaler(720 - 1);  // Freq = 72M / (PSC + 1) / 100  = 1000Hz
+	PWM_SetCompare1(50);		// Duty = CCR / (ARR + 1);    现在(ARR+1)=100,所以占空比为50
+	
+	while (1)
+	{
+		OLED_ShowNum(1, 6, IC_GetFreq(), 5);  // 1000Hz
+		OLED_ShowNum(2, 6, IC_GetDuty(), 2);  // 50%
+	}
+}
+
+
